@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Финансовая грамотность для подростков</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f8;
+    color: #222;
+}
+
+header {
+    background: #2b6cb0;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background: #1e4f8a;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 5px 15px;
+    font-weight: bold;
+}
+
+section {
+    max-width: 900px;
+    margin: auto;
+    padding: 25px;
+    background: white;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #2b6cb0;
+}
+
+.test {
+    background: #eef2f7;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.question {
+    margin-bottom: 15px;
+}
+
+button {
+    background: #2b6cb0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1e4f8a;
+}
+
+.result {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #555;
+}
+
+@media (max-width: 600px) {
+    section {
+        margin: 10px;
+        padding: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Финансовая грамотность для подростков</h1>
+<p>Онлайн-курс для школьников 9–11 классов</p>
+</header>
+
+<nav>
+<a href="#lesson1">История</a>
+<a href="#lesson2">Значение</a>
+<a href="#lesson3">Понятия</a>
+<a href="#lesson4">Ошибки</a>
+<a href="#lesson5">Итог</a>
+</nav>
+
+<section id="lesson1">
+<h2>Урок 1. История финансовой грамотности</h2>
+<p>
+Финансовая грамотность появилась задолго до появления банков и пластиковых карт.
+Сначала люди обменивались товарами, затем появились деньги, налоги, кредиты и сбережения.
+Со временем умение управлять деньгами стало важным навыком для каждого человека.
+</p>
+
+<div class="test">
+<h3>Мини-тест</h3>
+<div class="question">
+<p>Что появилось раньше?</p>
+<label><input type="radio" name="q1" value="1"> Обмен товарами</label><br>
+<label><input type="radio" name="q1" value="0"> Банковские карты</label>
+</div>
+<button onclick="checkTest('q1',1)">Проверить</button>
+<div class="result" id="r1"></div>
+</div>
+</section>
+
+<section id="lesson2">
+<h2>Урок 2. Значение финансовой грамотности</h2>
+<p>
+Финансовая грамотность помогает человеку планировать расходы, избегать долгов и
+принимать разумные финансовые решения. Для подростков это особенно важно в условиях
+цифровых платежей и онлайн-покупок.
+</p>
+</section>
+
+<section id="lesson3">
+<h2>Урок 3. Основные финансовые понятия</h2>
+<p>
+К базовым финансовым понятиям относятся доход, расход, бюджет, сбережения,
+кредит и процент. Понимание этих терминов помогает лучше управлять личными финансами.
+</p>
+</section>
+
+<section id="lesson4">
+<h2>Урок 4. Ошибки подростков</h2>
+<p>
+Наиболее распространённые ошибки — импульсивные покупки, доверие сомнительным сайтам,
+незнание условий подписок и отсутствие финансового плана.
+</p>
+</section>
+
+<section id="lesson5">
+<h2>Урок 5. Итоговый урок</h2>
+<p>
+Финансовая грамотность — это навык, который формируется постепенно.
+Знания, полученные в ходе курса, помогут подросткам увереннее чувствовать себя
+в финансовой сфере и принимать обдуманные решения.
+</p>
+</section>
+
+<footer>
+<p>Проект по финансовой грамотности • 10 класс</p>
+</footer>
+
+<script>
+function checkTest(name, correct) {
+    const answer = document.querySelector(`input[name="${name}"]:checked`);
+    const result = document.getElementById("r1");
+
+    if (!answer) {
+        result.innerHTML = "Выберите ответ";
+        result.style.color = "red";
+        return;
+    }
+
+    if (answer.value == correct) {
+        result.innerHTML = "Верно!";
+        result.style.color = "green";
+    } else {
+        result.innerHTML = "Неверно";
+        result.style.color = "orange";
+    }
+}
+</script>
+
+</body>
+</html>
