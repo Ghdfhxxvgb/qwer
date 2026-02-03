@@ -6,64 +6,46 @@
 
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
-    margin: 0;
-    padding: 20px;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7ff;
+  color: #222;
 }
-.container {
-    max-width: 900px;
-    margin: auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
+header {
+  background: #1f4fd8;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 26px;
 }
-h1, h2 {
-    text-align: center;
+section {
+  background: white;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 10px;
 }
-.section {
-    display: none;
-}
-.section.active {
-    display: block;
-}
-.question {
-    margin-bottom: 15px;
-}
+h2 { color: #1f4fd8; }
 button {
-    padding: 10px 20px;
-    margin-top: 20px;
-    cursor: pointer;
+  background: #1f4fd8;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
 }
-.result {
-    font-weight: bold;
-    margin-top: 15px;
-}
-.certificate {
-    border: 3px solid #000;
-    padding: 40px;
-    text-align: center;
-}
-input[type="text"] {
-    padding: 10px;
-    width: 60%;
-    margin-top: 10px;
-}
+.hidden { display: none; }
+.question { margin-bottom: 15px; }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-<h1>Онлайн-курс по финансовой грамотности для подростков</h1>
+<header>Финансовая грамотность для подростков</header>
 
 <!-- ВВЕДЕНИЕ -->
-<section id="intro" class="section active">
+<section id="intro">
 <h2>О проекте</h2>
-
-<div id="intro-text">
-<!-- СЮДА МЫ ВСТАВИМ РАСШИРЕННЫЙ ТЕКСТ ВВЕДЕНИЯ -->
 <p>
 В современном мире финансовая грамотность является одним из ключевых навыков,
 необходимых каждому человеку. Подростки всё чаще сталкиваются с деньгами:
@@ -94,10 +76,11 @@ input[type="text"] {
 изучаемой темы.
 </p>
 
-</div>
+<h3>Вводный тест</h3>
+<p>Ответьте на 10 вопросов, чтобы определить начальный уровень знаний.</p>
 
-<div id="intro-quiz">
-<!-- СЮДА МЫ ВСТАВИМ ВХОДНОЙ ОПРОС (10 ВОПРОСОВ) -->
+<!-- ВОПРОСЫ ВСТАВЛЯЕШЬ ПО ШАБЛОНУ -->
+<div class="question">
 <div class="question">
 <b>1. Что такое деньги?</b><br>
 <label><input type="radio" name="intro_1" data-correct="true"> Средство обмена</label><br>
@@ -168,119 +151,266 @@ input[type="text"] {
 <label><input type="radio" name="intro_10" data-correct="true"> Обдуманно</label>
 </div>
 
+
+<!-- ДО 10 ВОПРОСОВ -->
+
+<button onclick="checkIntro()">Проверить результат</button>
+</section>
+
+<section id="introResult" class="hidden">
+<h2>Результат</h2>
+<p id="introScore"></p>
+<button onclick="openBlock(1)">Начать обучение</button>
+</section>
+
+<!-- БЛОКИ -->
+<div id="block1-text">
+<p>
+История финансов неразрывно связана с развитием человеческого общества.
+С момента появления первых форм обмена люди искали удобные способы
+получения необходимых товаров и услуг. Изначально обмен осуществлялся
+в форме бартера — прямого обмена одного товара на другой. Однако такой
+способ был неудобен, так как требовал совпадения потребностей у обеих сторон.
+</p>
+
+<p>
+Со временем бартер начал уступать место более универсальным средствам
+обмена. В качестве денег использовались различные ценные предметы:
+раковины, меха, скот, металлы. Постепенно люди пришли к использованию
+металлических монет, которые обладали прочностью, удобством хранения
+и универсальной ценностью.
+</p>
+
+<p>
+Развитие торговли и государств привело к появлению банков. Банки стали
+заниматься хранением денег, выдачей займов и проведением финансовых
+операций. В этот период появились такие понятия, как проценты, кредиты
+и сбережения, которые стали важной частью экономической жизни.
+</p>
+
+<p>
+Следующим этапом стало появление бумажных денег. Они упростили
+крупные расчёты и ускорили торговые процессы. Со временем финансовая
+система усложнялась, появлялись новые инструменты: чеки, безналичные
+платежи, банковские карты.
+</p>
+
+<p>
+В современном мире финансы перешли в цифровой формат. Большинство
+платежей осуществляется через банковские приложения, электронные
+кошельки и онлайн-сервисы. Понимание истории развития финансов
+помогает осознать ценность денег и необходимость грамотного обращения
+с ними в повседневной жизни.
+</p>
+
+<section id="block1" class="hidden">
+<h2>Блок 1. История финансов</h2>
+<p>ТЕКСТ БЛОКА 1 (А4
+
+<div id="block1-quiz">
+<div class="question">
+<b>1. Как назывался древний обмен товарами?</b><br>
+<label><input type="radio" name="block1_1"> Кредит</label><br>
+<label><input type="radio" name="block1_1" data-correct="true"> Бартер</label><br>
+<label><input type="radio" name="block1_1"> Инвестиция</label>
 </div>
 
-<button onclick="checkIntro()">Начать обучение</button>
-<p id="intro-result" class="result"></p>
+<div class="question">
+<b>2. Почему бартер был неудобен?</b><br>
+<label><input type="radio" name="block1_2"> Был слишком прост</label><br>
+<label><input type="radio" name="block1_2"> Не требовал денег</label><br>
+<label><input type="radio" name="block1_2" data-correct="true"> Требовал совпадения потребностей</label>
+</div>
+
+<div class="question">
+<b>3. Что стало первым видом денег?</b><br>
+<label><input type="radio" name="block1_3" data-correct="true"> Ценные предметы</label><br>
+<label><input type="radio" name="block1_3"> Бумажные купюры</label><br>
+<label><input type="radio" name="block1_3"> Банковские карты</label>
+</div>
+
+<div class="question">
+<b>4. Для чего появились деньги?</b><br>
+<label><input type="radio" name="block1_4"> Для развлечения</label><br>
+<label><input type="radio" name="block1_4" data-correct="true"> Для упрощения обмена</label><br>
+<label><input type="radio" name="block1_4"> Для усложнения торговли</label>
+</div>
+
+<div class="question">
+<b>5. Что появилось раньше?</b><br>
+<label><input type="radio" name="block1_5"> Криптовалюта</label><br>
+<label><input type="radio" name="block1_5" data-correct="true"> Монеты</label><br>
+<label><input type="radio" name="block1_5"> Банковские приложения</label>
+</div>
+
+<div class="question">
+<b>6. Для чего создавались банки?</b><br>
+<label><input type="radio" name="block1_6"> Для развлечений</label><br>
+<label><input type="radio" name="block1_6"> Для торговли</label><br>
+<label><input type="radio" name="block1_6" data-correct="true"> Для хранения и выдачи денег</label>
+</div>
+
+<div class="question">
+<b>7. Что такое процент?</b><br>
+<label><input type="radio" name="block1_7"> Налог</label><br>
+<label><input type="radio" name="block1_7" data-correct="true"> Плата за пользование деньгами</label><br>
+<label><input type="radio" name="block1_7"> Скидка</label>
+</div>
+
+<div class="question">
+<b>8. Что относится к финансовым институтам?</b><br>
+<label><input type="radio" name="block1_8"> Магазин</label><br>
+<label><input type="radio" name="block1_8"> Школа</label><br>
+<label><input type="radio" name="block1_8" data-correct="true"> Банк</label>
+</div>
+
+<div class="question">
+<b>9. Когда появились бумажные деньги?</b><br>
+<label><input type="radio" name="block1_9" data-correct="true"> После монет</label><br>
+<label><input type="radio" name="block1_9"> До бартера</label><br>
+<label><input type="radio" name="block1_9"> После карт</label>
+</div>
+
+<div class="question">
+<b>10. Что такое кредит?</b><br>
+<label><input type="radio" name="block1_10"> Сбережения</label><br>
+<label><input type="radio" name="block1_10" data-correct="true"> Деньги в долг</label><br>
+<label><input type="radio" name="block1_10"> Подарок</label>
+</div>
+
+<div class="question">
+<b>11. Что такое инвестиции?</b><br>
+<label><input type="radio" name="block1_11"> Потеря денег</label><br>
+<label><input type="radio" name="block1_11" data-correct="true"> Вложение денег</label><br>
+<label><input type="radio" name="block1_11"> Трата</label>
+</div>
+
+<div class="question">
+<b>12. Что изменилось с появлением цифровых денег?</b><br>
+<label><input type="radio" name="block1_12" data-correct="true"> Скорость операций</label><br>
+<label><input type="radio" name="block1_12"> Деньги исчезли</label><br>
+<label><input type="radio" name="block1_12"> Обмен стал сложнее</label>
+</div>
+
+<div class="question">
+<b>13. Что такое электронный платёж?</b><br>
+<label><input type="radio" name="block1_13"> Обмен товарами</label><br>
+<label><input type="radio" name="block1_13" data-correct="true"> Оплата через интернет</label><br>
+<label><input type="radio" name="block1_13"> Наличные</label>
+</div>
+
+<div class="question">
+<b>14. Почему важна история финансов?</b><br>
+<label><input type="radio" name="block1_14"> Для развлечения</label><br>
+<label><input type="radio" name="block1_14"> Она не важна</label><br>
+<label><input type="radio" name="block1_14" data-correct="true"> Помогает понять ценность денег</label>
+</div>
+
+<div class="question">
+<b>15. Что используется сегодня чаще всего?</b><br>
+<label><input type="radio" name="block1_15"> Бартер</label><br>
+<label><input type="radio" name="block1_15"> Монеты</label><br>
+<label><input type="radio" name="block1_15" data-correct="true"> Карты и приложения</label>
+</div>
+
+<div class="question">
+<b>16. Что такое финансовая система?</b><br>
+<label><input type="radio" name="block1_16" data-correct="true"> Совокупность финансовых институтов</label><br>
+<label><input type="radio" name="block1_16"> Один банк</label><br>
+<label><input type="radio" name="block1_16"> Магазин</label>
+</div>
+
+<div class="question">
+<b>17. Почему финансы развивались?</b><br>
+<label><input type="radio" name="block1_17"> Случайно</label><br>
+<label><input type="radio" name="block1_17"> Без причин</label><br>
+<label><input type="radio" name="block1_17" data-correct="true"> Из-за развития общества</label>
+</div>
+
+<div class="question">
+<b>18. Что такое наличные деньги?</b><br>
+<label><input type="radio" name="block1_18"> Онлайн-платежи</label><br>
+<label><input type="radio" name="block1_18" data-correct="true"> Бумажные деньги и монеты</label><br>
+<label><input type="radio" name="block1_18"> Кредиты</label>
+</div>
+
+<div class="question">
+<b>19. Что заменяет наличные сегодня?</b><br>
+<label><input type="radio" name="block1_19"> Бартер</label><br>
+<label><input type="radio" name="block1_19"> Обмен</label><br>
+<label><input type="radio" name="block1_19" data-correct="true"> Безналичные платежи</label>
+</div>
+
+<div class="question">
+<b>20. Почему важно понимать развитие финансов?</b><br>
+<label><input type="radio" name="block1_20"> Это не нужно</label><br>
+<label><input type="radio" name="block1_20"> Для истории</label><br>
+<label><input type="radio" name="block1_20" data-correct="true"> Для грамотного обращения с деньгами</label>
+</div>
+
+<button onclick="checkBlock(1)">Проверить блок</button>
 </section>
 
-<!-- БЛОКИ 1–5 -->
-<section id="block1" class="section">
-<h2>Блок 1</h2>
-<div id="block1-text"></div>
-<div id="block1-quiz"></div>
-<button onclick="checkBlock(1)">Проверить</button>
-<p id="block1-result" class="result"></p>
+<section id="block2" class="hidden">
+<h2>Блок 2. Понятие финансовой грамотности</h2>
+<p>ТЕКСТ БЛОКА 2 (А4)</p>
+
+<button onclick="checkBlock(2)">Проверить блок</button>
 </section>
 
-<section id="block2" class="section">
-<h2>Блок 2</h2>
-<div id="block2-text"></div>
-<div id="block2-quiz"></div>
-<button onclick="checkBlock(2)">Проверить</button>
-<p id="block2-result" class="result"></p>
+<section id="block3" class="hidden">
+<h2>Блок 3. Значение финансовой грамотности</h2>
+<p>ТЕКСТ БЛОКА 3 (А4)</p>
+<button onclick="checkBlock(3)">Проверить блок</button>
 </section>
 
-<section id="block3" class="section">
-<h2>Блок 3</h2>
-<div id="block3-text"></div>
-<div id="block3-quiz"></div>
-<button onclick="checkBlock(3)">Проверить</button>
-<p id="block3-result" class="result"></p>
+<section id="block4" class="hidden">
+<h2>Блок 4. Ошибки подростков</h2>
+<p>ТЕКСТ БЛОКА 4 (А4)</p>
+<button onclick="checkBlock(4)">Проверить блок</button>
 </section>
 
-<section id="block4" class="section">
-<h2>Блок 4</h2>
-<div id="block4-text"></div>
-<div id="block4-quiz"></div>
-<button onclick="checkBlock(4)">Проверить</button>
-<p id="block4-result" class="result"></p>
-</section>
-
-<section id="block5" class="section">
-<h2>Блок 5</h2>
-<div id="block5-text"></div>
-<div id="block5-quiz"></div>
-<button onclick="checkBlock(5)">Проверить</button>
-<p id="block5-result" class="result"></p>
+<section id="block5" class="hidden">
+<h2>Блок 5. Итоговое обобщение</h2>
+<p>ТЕКСТ БЛОКА 5 (А4)</p>
+<button onclick="checkBlock(5)">Завершить курс</button>
 </section>
 
 <!-- ГРАМОТА -->
-<section id="certificate" class="section">
-<div class="certificate" id="cert">
-<h2>ГРАМОТА</h2>
-<p>Настоящая грамота подтверждает, что</p>
-<input type="text" id="fio" placeholder="Фамилия Имя">
-<p>успешно прошёл(ла) курс по финансовой грамотности</p>
-<p>Дата: <span id="cert-date"></span></p>
-</div>
-<button onclick="downloadPDF()">Скачать грамоту в PDF</button>
+<section id="certificate" class="hidden">
+<h2>Грамота</h2>
+<p>Введите имя и фамилию:</p>
+<input id="fio">
+<p id="certText"></p>
+<button onclick="print()">Сохранить в PDF</button>
 </section>
 
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-
 <script>
-let currentBlock = 0;
-let quizzes = {};
-
-function showSection(id) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
+function checkIntro() {
+  let c = document.querySelectorAll('#intro input[data-correct]:checked').length;
+  document.getElementById('introScore').innerText =
+    'Правильных ответов: ' + c + ' из 10';
+  document.getElementById('introResult').classList.remove('hidden');
 }
 
-function checkIntro() {
-    const correct = countCorrect('intro');
-    const res = document.getElementById('intro-result');
-    if (correct <= 7) {
-        res.innerText = 'Результат недостаточный. Рекомендуется внимательно пройти курс.';
-    } else {
-        res.innerText = 'Вы можете начинать обучение.';
-    }
-    showSection('block1');
+function openBlock(n) {
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('introResult').classList.add('hidden');
+  document.getElementById('block' + n).classList.remove('hidden');
 }
 
 function checkBlock(n) {
-    const correct = countCorrect('block' + n);
-    const res = document.getElementById('block' + n + '-result');
-
-    if (correct <= 15) {
-        res.innerText = `Результат: ${correct}/20. Блок не пройден, пройдите его заново.`;
-    } else {
-        res.innerText = `Результат: ${correct}/20. Блок пройден.`;
-        if (n < 5) {
-            showSection('block' + (n + 1));
-        } else {
-            document.getElementById('cert-date').innerText = new Date().toLocaleDateString();
-            showSection('certificate');
-        }
-    }
-}
-
-function countCorrect(prefix) {
-    let correct = 0;
-    document.querySelectorAll(`input[name^="${prefix}_"]:checked`).forEach(i => {
-        if (i.dataset.correct === "true") correct++;
-    });
-    return correct;
-}
-
-function downloadPDF() {
-    html2pdf().from(document.getElementById('cert')).save('certificate.pdf');
+  let block = document.getElementById('block' + n);
+  let c = block.querySelectorAll('input[data-correct]:checked').length;
+  if (c >= 15) {
+    block.classList.add('hidden');
+    if (n < 5) document.getElementById('block' + (n+1)).classList.remove('hidden');
+    else document.getElementById('certificate').classList.remove('hidden');
+  } else alert('Менее 15 правильных ответов. Повторите блок.');
 }
 </script>
 
 </body>
 </html>
+
 
