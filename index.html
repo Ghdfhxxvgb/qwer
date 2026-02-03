@@ -3,224 +3,284 @@
 <head>
 <meta charset="UTF-8">
 <title>Финансовая грамотность для подростков</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  margin: 0;
-  color: #222;
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    margin: 0;
+    padding: 20px;
 }
-
-header {
-  background: #1976d2;
-  color: white;
-  padding: 20px;
-  text-align: center;
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
 }
-
-section {
-  max-width: 900px;
-  background: white;
-  margin: 20px auto;
-  padding: 25px;
-  border-radius: 8px;
-  display: none;
+h1, h2 {
+    text-align: center;
 }
-
-section.active {
-  display: block;
+.section {
+    display: none;
 }
-
-h2 {
-  color: #1976d2;
+.section.active {
+    display: block;
 }
-
-button {
-  background: #1976d2;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  font-size: 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 15px;
-}
-
-button:hover {
-  background: #0d47a1;
-}
-
 .question {
-  margin-bottom: 10px;
+    margin-bottom: 15px;
 }
-
+button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
 .result {
-  font-weight: bold;
-  margin-top: 10px;
+    font-weight: bold;
+    margin-top: 15px;
 }
-
-.lock {
-  opacity: 0.4;
-  pointer-events: none;
-}
-
 .certificate {
-  text-align: center;
-  border: 4px solid #1976d2;
-  padding: 30px;
+    border: 3px solid #000;
+    padding: 40px;
+    text-align: center;
+}
+input[type="text"] {
+    padding: 10px;
+    width: 60%;
+    margin-top: 10px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>Финансовая грамотность для подростков</h1>
-<p>Интерактивный образовательный курс</p>
-</header>
+<div class="container">
 
-<!-- О ПРОЕКТЕ -->
-<section id="intro" class="active">
+<h1>Онлайн-курс по финансовой грамотности для подростков</h1>
+
+<!-- ВВЕДЕНИЕ -->
+<section id="intro" class="section active">
 <h2>О проекте</h2>
+
+<div id="intro-text">
+<!-- СЮДА МЫ ВСТАВИМ РАСШИРЕННЫЙ ТЕКСТ ВВЕДЕНИЯ -->
 <p>
-Данный сайт создан для повышения уровня финансовой грамотности подростков.
-Он помогает разобраться в деньгах, научиться избегать ошибок, планировать бюджет
-и защищаться от мошенников.
+В современном мире финансовая грамотность является одним из ключевых навыков,
+необходимых каждому человеку. Подростки всё чаще сталкиваются с деньгами:
+получают карманные средства, совершают покупки в интернете, пользуются
+банковскими картами и электронными сервисами. При этом отсутствие базовых
+финансовых знаний может привести к ошибкам, которые в будущем повлияют
+на финансовое положение человека.
 </p>
 
-<h3>Входной опрос (оценка начального уровня)</h3>
+<p>
+Финансовая грамотность включает в себя умение планировать доходы и расходы,
+осознанно принимать финансовые решения, понимать риски и избегать мошенничества.
+Особенно важно формировать эти навыки именно в подростковом возрасте, так как
+в этот период закладываются привычки, которые сохраняются на долгие годы.
+</p>
 
-<div class="question">1. Что такое бюджет?
-<br><input type="radio" name="i1"> План доходов и расходов</div>
-<div class="question">2. Что опаснее всего в интернете?
-<br><input type="radio" name="i2"> Мошенники</div>
-<div class="question">3. Деньги лучше:
-<br><input type="radio" name="i3"> Планировать</div>
+<p>
+Данный образовательный проект представляет собой онлайн-курс по финансовой
+грамотности для подростков. Курс построен в форме последовательных тематических
+блоков, каждый из которых содержит теоретический материал и проверочный опрос.
+Переход к следующему блоку возможен только после успешного усвоения предыдущего.
+</p>
 
-<button onclick="startCourse()">Пройти полный курс обучения</button>
+<p>
+Перед началом обучения предлагается пройти вводный опрос, который позволит
+оценить исходный уровень финансовых знаний. Его результаты не влияют на
+возможность прохождения курса, однако помогают лучше понять важность
+изучаемой темы.
+</p>
+
+</div>
+
+<div id="intro-quiz">
+<!-- СЮДА МЫ ВСТАВИМ ВХОДНОЙ ОПРОС (10 ВОПРОСОВ) -->
+<div class="question">
+<b>1. Что такое деньги?</b><br>
+<label><input type="radio" name="intro_1" data-correct="true"> Средство обмена</label><br>
+<label><input type="radio" name="intro_1"> Украшение</label><br>
+<label><input type="radio" name="intro_1"> Игрушка</label>
+</div>
+
+<div class="question">
+<b>2. Для чего нужен личный бюджет?</b><br>
+<label><input type="radio" name="intro_2"> Для трат без ограничений</label><br>
+<label><input type="radio" name="intro_2" data-correct="true"> Для контроля доходов и расходов</label><br>
+<label><input type="radio" name="intro_2"> Он не нужен</label>
+</div>
+
+<div class="question">
+<b>3. Что означает слово «доход»?</b><br>
+<label><input type="radio" name="intro_3"> Деньги, которые тратят</label><br>
+<label><input type="radio" name="intro_3" data-correct="true"> Деньги, которые получают</label><br>
+<label><input type="radio" name="intro_3"> Деньги, которые теряют</label>
+</div>
+
+<div class="question">
+<b>4. Что относится к расходам?</b><br>
+<label><input type="radio" name="intro_4" data-correct="true"> Покупка товаров и услуг</label><br>
+<label><input type="radio" name="intro_4"> Получение зарплаты</label><br>
+<label><input type="radio" name="intro_4"> Подарок</label>
+</div>
+
+<div class="question">
+<b>5. Почему важно планировать траты?</b><br>
+<label><input type="radio" name="intro_5"> Чтобы тратить больше</label><br>
+<label><input type="radio" name="intro_5"> Это не имеет значения</label><br>
+<label><input type="radio" name="intro_5" data-correct="true"> Чтобы избежать нехватки денег</label>
+</div>
+
+<div class="question">
+<b>6. Что такое банковская карта?</b><br>
+<label><input type="radio" name="intro_6"> Документ</label><br>
+<label><input type="radio" name="intro_6" data-correct="true"> Инструмент для хранения и использования денег</label><br>
+<label><input type="radio" name="intro_6"> Пропуск</label>
+</div>
+
+<div class="question">
+<b>7. Что такое финансовое мошенничество?</b><br>
+<label><input type="radio" name="intro_7"> Законный заработок</label><br>
+<label><input type="radio" name="intro_7" data-correct="true"> Обман с целью получения денег</label><br>
+<label><input type="radio" name="intro_7"> Вид рекламы</label>
+</div>
+
+<div class="question">
+<b>8. Почему опасно сообщать данные банковской карты?</b><br>
+<label><input type="radio" name="intro_8"> Это безопасно</label><br>
+<label><input type="radio" name="intro_8" data-correct="true"> Деньги могут быть украдены</label><br>
+<label><input type="radio" name="intro_8"> Ничего не произойдёт</label>
+</div>
+
+<div class="question">
+<b>9. Что такое сбережения?</b><br>
+<label><input type="radio" name="intro_9"> Потраченные деньги</label><br>
+<label><input type="radio" name="intro_9"> Занятые деньги</label><br>
+<label><input type="radio" name="intro_9" data-correct="true"> Отложенные деньги</label>
+</div>
+
+<div class="question">
+<b>10. Как лучше принимать финансовые решения?</b><br>
+<label><input type="radio" name="intro_10"> Спонтанно</label><br>
+<label><input type="radio" name="intro_10"> Ориентируясь на рекламу</label><br>
+<label><input type="radio" name="intro_10" data-correct="true"> Обдуманно</label>
+</div>
+
+</div>
+
+<button onclick="checkIntro()">Начать обучение</button>
+<p id="intro-result" class="result"></p>
 </section>
 
-<!-- БЛОК 1 -->
-<section id="block1">
-<h2>Блок 1. История финансов</h2>
-<p>
-Финансовая система формировалась тысячелетиями: от обмена товарами до банков,
-карт и цифровых денег. Понимание истории помогает осознать ценность денег.
-</p>
-
-<h3>Тест (20 вопросов)</h3>
-
-<div class="question"><input type="checkbox" value="1"> Деньги появились позже обмена</div>
-<div class="question"><input type="checkbox" value="1"> Банки появились не сразу</div>
-<div class="question"><input type="checkbox" value="1"> Деньги упрощают обмен</div>
-
-<button onclick="checkBlock(1)">Проверить усвоение</button>
-<div class="result" id="res1"></div>
+<!-- БЛОКИ 1–5 -->
+<section id="block1" class="section">
+<h2>Блок 1</h2>
+<div id="block1-text"></div>
+<div id="block1-quiz"></div>
+<button onclick="checkBlock(1)">Проверить</button>
+<p id="block1-result" class="result"></p>
 </section>
 
-<!-- БЛОК 2 -->
-<section id="block2" class="lock">
-<h2>Блок 2. Понятие финансовой грамотности</h2>
-<p>
-Финансовая грамотность — это умение управлять деньгами, а не просто их тратить.
-</p>
-
-<div class="question"><input type="checkbox" value="1"> Учет расходов важен</div>
-<div class="question"><input type="checkbox" value="1"> Финансовая цель нужна</div>
-
-<button onclick="checkBlock(2)">Проверить усвоение</button>
-<div class="result" id="res2"></div>
+<section id="block2" class="section">
+<h2>Блок 2</h2>
+<div id="block2-text"></div>
+<div id="block2-quiz"></div>
+<button onclick="checkBlock(2)">Проверить</button>
+<p id="block2-result" class="result"></p>
 </section>
 
-<!-- БЛОК 3 -->
-<section id="block3" class="lock">
-<h2>Блок 3. Значение финансовой грамотности</h2>
-<p>
-Грамотный человек реже попадает в долги и увереннее планирует будущее.
-</p>
-
-<div class="question"><input type="checkbox" value="1"> Финансы влияют на качество жизни</div>
-<div class="question"><input type="checkbox" value="1"> Знания снижают риски</div>
-
-<button onclick="checkBlock(3)">Проверить усвоение</button>
-<div class="result" id="res3"></div>
+<section id="block3" class="section">
+<h2>Блок 3</h2>
+<div id="block3-text"></div>
+<div id="block3-quiz"></div>
+<button onclick="checkBlock(3)">Проверить</button>
+<p id="block3-result" class="result"></p>
 </section>
 
-<!-- БЛОК 4 -->
-<section id="block4" class="lock">
-<h2>Блок 4. Ошибки подростков</h2>
-<p>
-Импульсивные покупки и доверие рекламе — частые причины финансовых проблем.
-</p>
-
-<div class="question"><input type="checkbox" value="1"> Подписки требуют контроля</div>
-<div class="question"><input type="checkbox" value="1"> Не всё из рекламы полезно</div>
-
-<button onclick="checkBlock(4)">Проверить усвоение</button>
-<div class="result" id="res4"></div>
+<section id="block4" class="section">
+<h2>Блок 4</h2>
+<div id="block4-text"></div>
+<div id="block4-quiz"></div>
+<button onclick="checkBlock(4)">Проверить</button>
+<p id="block4-result" class="result"></p>
 </section>
 
-<!-- БЛОК 5 -->
-<section id="block5" class="lock">
-<h2>Блок 5. Обобщение курса</h2>
-<p>
-Финансовая грамотность — навык, который формируется постепенно и на всю жизнь.
-</p>
-
-<div class="question"><input type="checkbox" value="1"> Финансы требуют дисциплины</div>
-<div class="question"><input type="checkbox" value="1"> Знания дают свободу</div>
-
-<button onclick="checkBlock(5)">Завершить курс</button>
-<div class="result" id="res5"></div>
+<section id="block5" class="section">
+<h2>Блок 5</h2>
+<div id="block5-text"></div>
+<div id="block5-quiz"></div>
+<button onclick="checkBlock(5)">Проверить</button>
+<p id="block5-result" class="result"></p>
 </section>
 
 <!-- ГРАМОТА -->
-<section id="certificate">
-<div class="certificate">
-<h2>🎓 Поздравляем!</h2>
-<p>Вы успешно прошли курс<br><b>«Финансовая грамотность для подростков»</b></p>
-<p>Вы показали высокий уровень усвоения материала.</p>
+<section id="certificate" class="section">
+<div class="certificate" id="cert">
+<h2>ГРАМОТА</h2>
+<p>Настоящая грамота подтверждает, что</p>
+<input type="text" id="fio" placeholder="Фамилия Имя">
+<p>успешно прошёл(ла) курс по финансовой грамотности</p>
+<p>Дата: <span id="cert-date"></span></p>
 </div>
+<button onclick="downloadPDF()">Скачать грамоту в PDF</button>
 </section>
 
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
 <script>
-function startCourse() {
-  document.getElementById("intro").classList.remove("active");
-  document.getElementById("block1").classList.add("active");
+let currentBlock = 0;
+let quizzes = {};
+
+function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+function checkIntro() {
+    const correct = countCorrect('intro');
+    const res = document.getElementById('intro-result');
+    if (correct <= 7) {
+        res.innerText = 'Результат недостаточный. Рекомендуется внимательно пройти курс.';
+    } else {
+        res.innerText = 'Вы можете начинать обучение.';
+    }
+    showSection('block1');
 }
 
 function checkBlock(n) {
-  let block = document.getElementById("block" + n);
-  let answers = block.querySelectorAll("input[type='checkbox']");
-  let score = 0;
+    const correct = countCorrect('block' + n);
+    const res = document.getElementById('block' + n + '-result');
 
-  answers.forEach(a => {
-    if (a.checked && a.value === "1") score++;
-  });
-
-  if (score >= 2) {
-    document.getElementById("res" + n).innerText = "✅ Блок усвоен";
-    block.classList.remove("active");
-    if (n < 5) {
-      let next = document.getElementById("block" + (n+1));
-      next.classList.remove("lock");
-      next.classList.add("active");
+    if (correct <= 15) {
+        res.innerText = `Результат: ${correct}/20. Блок не пройден, пройдите его заново.`;
     } else {
-      document.getElementById("certificate").classList.add("active");
+        res.innerText = `Результат: ${correct}/20. Блок пройден.`;
+        if (n < 5) {
+            showSection('block' + (n + 1));
+        } else {
+            document.getElementById('cert-date').innerText = new Date().toLocaleDateString();
+            showSection('certificate');
+        }
     }
-  } else {
-    document.getElementById("res" + n).innerText =
-      "❌ Недостаточно верных ответов. Пройди блок заново.";
-  }
+}
+
+function countCorrect(prefix) {
+    let correct = 0;
+    document.querySelectorAll(`input[name^="${prefix}_"]:checked`).forEach(i => {
+        if (i.dataset.correct === "true") correct++;
+    });
+    return correct;
+}
+
+function downloadPDF() {
+    html2pdf().from(document.getElementById('cert')).save('certificate.pdf');
 }
 </script>
 
 </body>
 </html>
 
-</script>
-
-</body>
-</html>
