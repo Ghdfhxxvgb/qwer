@@ -169,13 +169,27 @@ button {
 <button onclick="openBlock(1)">Начать обучение</button>
 </section>
 
-<!-- БЛОКИ -->
 <section id="block1" class="hidden">
 <h2>Блок 1. История финансов</h2>
-<p>ТЕКСТ БЛОКА 1 (А4)</p>
-<!-- 20 ВОПРОСОВ -->
+
+<p>
+ЗДЕСЬ ВСТАВЛЯЕШЬ ПОЛНЫЙ ТЕКСТ БЛОКА 1  
+(тот самый, который мы уже писали — большой, на ~1 А4)
+</p>
+
+<div class="question">
+<b>1. Когда появились первые деньги?</b><br>
+<label><input type="radio" name="b1q1"> В XX веке</label><br>
+<label><input type="radio" name="b1q1" data-correct> В древности</label><br>
+<label><input type="radio" name="b1q1"> В будущем</label>
+</div>
+
+<!-- ТАК ЖЕ ДО ВОПРОСА 20 -->
+<!-- name ОБЯЗАТЕЛЬНО разные: b1q2, b1q3 … b1q20 -->
+
 <button onclick="checkBlock(1)">Проверить блок</button>
 </section>
+
 
 <section id="block2" class="hidden">
 <h2>Блок 2. Понятие финансовой грамотности</h2>
