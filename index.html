@@ -1095,19 +1095,6 @@ button {
 <button onclick="print()">Сохранить в PDF</button>
 </section>
 
-<script>
-function checkIntro() {
-  let c = document.querySelectorAll('#intro input[data-correct]:checked').length;
-  document.getElementById('introScore').innerText =
-    'Правильных ответов: ' + c + ' из 10';
-  document.getElementById('introResult').classList.remove('hidden');
-}
-
-function openBlock(n) {
-  document.getElementById('intro').classList.add('hidden');
-  document.getElementById('introResult').classList.add('hidden');
-  document.getElementById('block' + n).classList.remove('hidden');
-}
 
 <script>
 function checkQuiz(prefix, total, resultId) {
