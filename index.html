@@ -357,8 +357,12 @@ button {
 <!-- ТАК ЖЕ ДО ВОПРОСА 20 -->
 <!-- name ОБЯЗАТЕЛЬНО разные: b1q2, b1q3 … b1q20 -->
 
-<button onclick="checkBlock(1)">Проверить блок</button>
-</section>
+<button onclick="checkQuiz('b1q', 20, 'block1-result')">
+Проверить блок
+</button>
+
+<div id="block1-result" class="result-box hidden"></div>
+
 
 <section id="block2" class="hidden">
 <h2>Блок 2. Понятие финансовой грамотности</h2>
@@ -544,10 +548,12 @@ button {
 </div>
 
 <!-- b2q2 … b2q20 -->
+<button onclick="checkQuiz('b2q', 20, 'block2-result')">
+Проверить блок
+</button>
 
-<button onclick="checkBlock(2)">Проверить блок</button>
 <div id="block2-result" class="result-box hidden"></div>
-</section>
+
 
 
 
@@ -748,10 +754,11 @@ button {
 </div>
 
 
-<button onclick="checkBlock(3)">Проверить блок</button>
+<button onclick="checkQuiz('b3q', 20, 'block3-result')">
+Проверить блок
+</button>
 
 <div id="block3-result" class="result-box hidden"></div>
-</section>
 
 
 <section id="block4" class="hidden">
@@ -948,10 +955,11 @@ button {
 
 <!-- ВОПРОСЫ 11–20 МОЖНО ДОПОЛНИТЬ ПО АНАЛОГИИ -->
 
-<button onclick="checkBlock(4)">Проверить блок</button>
+<button onclick="checkQuiz('b4q', 20, 'block4-result')">
+Проверить блок
+</button>
 
 <div id="block4-result" class="result-box hidden"></div>
-</section>
 
 
 <section id="block5" class="hidden">
@@ -1069,11 +1077,11 @@ button {
 
 <!-- ВОПРОСЫ 11–20 -->
 <!-- (ТЕ, ЧТО Я ПРИСЛАЛ ТЕБЕ В ПРЕДЫДУЩЕМ СООБЩЕНИИ — ВСТАВЛЯЕШЬ СЮДА БЕЗ ИЗМЕНЕНИЙ) -->
-
-<button onclick="checkBlock(5)">Проверить блок</button>
+<button onclick="checkQuiz('b5q', 20, 'block5-result')">
+Проверить блок
+</button>
 
 <div id="block5-result" class="result-box hidden"></div>
-</section>
 
 
 <!-- ГРАМОТА -->
@@ -1099,14 +1107,39 @@ function openBlock(n) {
   document.getElementById('block' + n).classList.remove('hidden');
 }
 
-function checkBlock(n) {
-  let block = document.getElementById('block' + n);
-  let c = block.querySelectorAll('input[data-correct]:checked').length;
-  if (c >= 15) {
-    block.classList.add('hidden');
-    if (n < 5) document.getElementById('block' + (n+1)).classList.remove('hidden');
-    else document.getElementById('certificate').classList.remove('hidden');
-  } else alert('Менее 15 правильных ответов. Повторите блок.');
+<script>
+function checkQuiz(prefix, total, resultId) {
+    let correct = 0;
+
+    for (let i = 1; i <= total; i++) {
+        const options = document.getElementsByName(prefix + i);
+        for (let opt of options) {
+            if (opt.checked && opt.dataset.correct !== undefined) {
+                correct++;
+            }
+        }
+    }
+
+    let message = "";
+    if (correct <= 5) {
+        message = "Ты вообще текст читал? 😐 Очень слабый результат.";
+    } else if (correct <= 9) {
+        message = "Уже лучше, но всё ещё плохо. Стоит перечитать материал.";
+    } else if (correct <= 14) {
+        message = "Неплохо, но есть пробелы. Можно лучше.";
+    } else if (correct <= 18) {
+        message = "Хороший результат! Материал усвоен.";
+    } else {
+        message = "Отлично! Ты реально разобрался в теме 🔥";
+    }
+
+    const resultBox = document.getElementById(resultId);
+    resultBox.innerHTML = `
+        <h3>Результат</h3>
+        <p><b>${correct} из ${total}</b> правильных ответов</p>
+        <p>${message}</p>
+    `;
+    resultBox.classList.remove("hidden");
 }
 </script>
 
