@@ -161,17 +161,19 @@ button {
 
 
 <!-- ДО 10 ВОПРОСОВ -->
-<button onclick="checkQuiz('intro_', 10, 'intro-result')">
+<button onclick="checkQuiz('intro_', 10, 'intro-result', 'block1', true)">
 Проверить результат
 </button>
 
+
 <div id="intro-result" class="result-box hidden"></div>
 
-<section id="introResult" class="hidden">
-<h2>Результат</h2>
-<p id="introScore"></p>
-<button onclick="openBlock(1)">Начать обучение</button>
-</section>
+<div id="intro-result" class="result-box hidden"></div>
+
+<button id="start-learning" class="hidden" onclick="startLearning()">
+Начать обучение
+</button>
+
 
 <section id="block1" class="hidden">
 <h2>Блок 1. История финансов</h2>
@@ -359,9 +361,10 @@ button {
 <!-- ТАК ЖЕ ДО ВОПРОСА 20 -->
 <!-- name ОБЯЗАТЕЛЬНО разные: b1q2, b1q3 … b1q20 -->
 
-<button onclick="checkQuiz('b1q', 20, 'block1-result')">
+<button onclick="checkQuiz('b1q', 20, 'block1-result', 'block2')">
 Проверить блок
 </button>
+
 
 <div id="block1-result" class="result-box hidden"></div>
 
@@ -550,9 +553,10 @@ button {
 </div>
 
 <!-- b2q2 … b2q20 -->
-<button onclick="checkQuiz('b2q', 20, 'block2-result')">
+<button onclick="checkQuiz('b2q', 20, 'block2-result', 'block3')">
 Проверить блок
 </button>
+
 
 <div id="block2-result" class="result-box hidden"></div>
 
@@ -756,9 +760,10 @@ button {
 </div>
 
 
-<button onclick="checkQuiz('b3q', 20, 'block3-result')">
+<button onclick="checkQuiz('b3q', 20, 'block3-result', 'block4')">
 Проверить блок
 </button>
+
 
 <div id="block3-result" class="result-box hidden"></div>
 
@@ -957,9 +962,10 @@ button {
 
 <!-- ВОПРОСЫ 11–20 МОЖНО ДОПОЛНИТЬ ПО АНАЛОГИИ -->
 
-<button onclick="checkQuiz('b4q', 20, 'block4-result')">
+<button onclick="checkQuiz('b4q', 20, 'block4-result', 'block5')">
 Проверить блок
 </button>
+
 
 <div id="block4-result" class="result-box hidden"></div>
 
@@ -1080,8 +1086,9 @@ button {
 <!-- ВОПРОСЫ 11–20 -->
 <!-- (ТЕ, ЧТО Я ПРИСЛАЛ ТЕБЕ В ПРЕДЫДУЩЕМ СООБЩЕНИИ — ВСТАВЛЯЕШЬ СЮДА БЕЗ ИЗМЕНЕНИЙ) -->
 <button onclick="checkQuiz('b5q', 20, 'block5-result')">
-Проверить блок
+Завершить курс
 </button>
+
 
 <div id="block5-result" class="result-box hidden"></div>
 
@@ -1095,9 +1102,8 @@ button {
 <button onclick="print()">Сохранить в PDF</button>
 </section>
 
-
 <script>
-function checkQuiz(prefix, total, resultId) {
+function checkQuiz(prefix, total, resultId, nextBlockId = null, isIntro = false) {
     let correct = 0;
 
     for (let i = 1; i <= total; i++) {
@@ -1110,16 +1116,29 @@ function checkQuiz(prefix, total, resultId) {
     }
 
     let message = "";
-    if (correct <= 5) {
-        message = "Ты вообще текст читал? 😐 Очень слабый результат.";
-    } else if (correct <= 9) {
-        message = "Уже лучше, но всё ещё плохо. Стоит перечитать материал.";
-    } else if (correct <= 14) {
-        message = "Неплохо, но есть пробелы. Можно лучше.";
-    } else if (correct <= 18) {
-        message = "Хороший результат! Материал усвоен.";
+    let canContinue = false;
+
+    if (isIntro) {
+        // ВВОДНЫЙ ОПРОС — БЕЗ ОГРАНИЧЕНИЙ
+        if (correct <= 5) {
+            message = "Ты вообще текст читал? 😐 Но ничего, сейчас разберёмся.";
+        } else if (correct <= 9) {
+            message = "Уже неплохо, но есть пробелы. Самое время начать обучение.";
+        } else {
+            message = "Хороший старт! Давай закрепим знания.";
+        }
+        canContinue = true;
     } else {
-        message = "Отлично! Ты реально разобрался в теме 🔥";
+        // ОБУЧАЮЩИЕ БЛОКИ — С ОГРАНИЧЕНИЕМ
+        if (correct < 15) {
+            message = "Результат ниже минимального порога (15). Пройди блок заново.";
+        } else if (correct <= 18) {
+            message = "Хороший результат! Блок усвоен, можно двигаться дальше.";
+            canContinue = true;
+        } else {
+            message = "Отлично! Ты полностью разобрался в теме 🔥";
+            canContinue = true;
+        }
     }
 
     const resultBox = document.getElementById(resultId);
@@ -1129,6 +1148,17 @@ function checkQuiz(prefix, total, resultId) {
         <p>${message}</p>
     `;
     resultBox.classList.remove("hidden");
+
+    // КНОПКА ПЕРЕХОДА
+    if (canContinue && nextBlockId) {
+        const btn = document.createElement("button");
+        btn.innerText = isIntro ? "Начать обучение" : "Перейти к следующему блоку";
+        btn.onclick = () => {
+            document.getElementById(nextBlockId).classList.remove("hidden");
+            window.scrollTo(0, 0);
+        };
+        resultBox.appendChild(btn);
+    }
 }
 </script>
 
