@@ -79,6 +79,38 @@ button:hover {
 .hidden {
   display: none;
 }
+.certificate-box {
+  background: #ffffff;
+  border: 6px solid #1f4fd8;
+  padding: 30px;
+  max-width: 700px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.certificate-box h1 {
+  color: #1f4fd8;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.certificate-box h2 {
+  margin: 20px 0;
+  font-size: 28px;
+}
+
+.cert-footer {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #555;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 300px;
+  font-size: 16px;
+}
+
 </style>
 
 </head>
@@ -404,6 +436,7 @@ button:hover {
 </button>
 
 <div id="block1-result" class="result-box hidden"></div>
+</section>
 
 
 <section id="block2" class="hidden">
@@ -594,9 +627,8 @@ button:hover {
 Проверить блок
 </button>
 
-
-
 <div id="block2-result" class="result-box hidden"></div>
+</section>
 
 
 
@@ -802,9 +834,8 @@ button:hover {
 Проверить блок
 </button>
 
-
-
 <div id="block3-result" class="result-box hidden"></div>
+</section>
 
 
 <section id="block4" class="hidden">
@@ -1004,9 +1035,8 @@ button:hover {
 <button onclick="checkQuiz('b4q', 20, 'block1-result', 'block5', false)">
 Проверить блок
 </button>
-
-
 <div id="block4-result" class="result-box hidden"></div>
+</section>
 
 
 <section id="block5" class="hidden">
@@ -1196,11 +1226,13 @@ button:hover {
 <button onclick="checkQuiz('b5q', 20, 'block5-result')">
 Завершить курс
 </button>
-<button onclick="checkQuiz('b5q', 20, 'block1-result'false)">
+<button onclick="checkQuiz('b5q', 20, 'block5-result', 'certificate', false)">
 Проверить блок
 </button>
 
+
 <div id="block5-result" class="result-box hidden"></div>
+</section>
 
 
 <!-- ГРАМОТА -->
@@ -1213,6 +1245,25 @@ button:hover {
 </section>
 
 <script>
+<script>
+function generateCertificate() {
+  const name = document.getElementById("nameInput").value;
+  if (!name) {
+    alert("Введите имя и фамилию");
+    return;
+  }
+  document.getElementById("cert-name").innerText = name;
+
+  const date = new Date().toLocaleDateString();
+  document.getElementById("cert-date").innerText = date;
+}
+
+function savePDF() {
+  window.print();
+}
+
+  
+
 // ФУНКЦИЯ: ПОКАЗЫВАЕТ ТОЛЬКО ОДИН БЛОК (ЭФФЕКТ НОВОЙ СТРАНИЦЫ)
 function showOnlyBlock(blockId) {
     const sections = document.querySelectorAll("section");
@@ -1284,6 +1335,39 @@ function checkQuiz(prefix, total, resultId, nextBlockId = null, isIntro = false)
 
 
 </body>
+<section id="certificate" class="hidden">
+  <h2>Поздравляем с завершением курса!</h2>
+
+  <p>
+    Вы успешно прошли все блоки образовательного курса
+    «Финансовая грамотность для подростков».
+  </p>
+
+  <div class="certificate-box" id="cert-content">
+    <h1>ГРАМОТА</h1>
+    <p>настоящим подтверждается, что</p>
+
+    <h2 id="cert-name">Имя Фамилия</h2>
+
+    <p>
+      успешно прошёл(ла) онлайн-курс по финансовой грамотности
+      и показал(а) высокий уровень усвоения материала.
+    </p>
+
+    <p class="cert-footer">
+      Дата: <span id="cert-date"></span><br>
+      Образовательный проект «Финансовая грамотность для подростков»
+    </p>
+  </div>
+
+  <div style="margin-top:20px;">
+    <input type="text" id="nameInput" placeholder="Введите имя и фамилию">
+    <br><br>
+    <button onclick="generateCertificate()">Создать грамоту</button>
+    <button onclick="savePDF()">Сохранить в PDF</button>
+  </div>
+</section>
+
 </html>
 
 
