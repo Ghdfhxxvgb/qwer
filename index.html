@@ -1245,24 +1245,6 @@ input[type="text"] {
 </section>
 
 <script>
-<script>
-function generateCertificate() {
-  const name = document.getElementById("nameInput").value;
-  if (!name) {
-    alert("Введите имя и фамилию");
-    return;
-  }
-  document.getElementById("cert-name").innerText = name;
-
-  const date = new Date().toLocaleDateString();
-  document.getElementById("cert-date").innerText = date;
-}
-
-function savePDF() {
-  window.print();
-}
-
-  
 
 // ФУНКЦИЯ: ПОКАЗЫВАЕТ ТОЛЬКО ОДИН БЛОК (ЭФФЕКТ НОВОЙ СТРАНИЦЫ)
 function showOnlyBlock(blockId) {
@@ -1335,38 +1317,6 @@ function checkQuiz(prefix, total, resultId, nextBlockId = null, isIntro = false)
 
 
 </body>
-<section id="certificate" class="hidden">
-  <h2>Поздравляем с завершением курса!</h2>
-
-  <p>
-    Вы успешно прошли все блоки образовательного курса
-    «Финансовая грамотность для подростков».
-  </p>
-
-  <div class="certificate-box" id="cert-content">
-    <h1>ГРАМОТА</h1>
-    <p>настоящим подтверждается, что</p>
-
-    <h2 id="cert-name">Имя Фамилия</h2>
-
-    <p>
-      успешно прошёл(ла) онлайн-курс по финансовой грамотности
-      и показал(а) высокий уровень усвоения материала.
-    </p>
-
-    <p class="cert-footer">
-      Дата: <span id="cert-date"></span><br>
-      Образовательный проект «Финансовая грамотность для подростков»
-    </p>
-  </div>
-
-  <div style="margin-top:20px;">
-    <input type="text" id="nameInput" placeholder="Введите имя и фамилию">
-    <br><br>
-    <button onclick="generateCertificate()">Создать грамоту</button>
-    <button onclick="savePDF()">Сохранить в PDF</button>
-  </div>
-</section>
 
 </html>
 
