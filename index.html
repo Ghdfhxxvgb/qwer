@@ -170,8 +170,8 @@ button {
 
 <div id="intro-result" class="result-box hidden"></div>
 
-<button id="start-learning" class="hidden" onclick="startLearning()">
-Начать обучение
+<button onclick="checkQuiz('intro_', 10, 'intro-result', 'block1', true)">
+Проверить результат
 </button>
 
 
@@ -361,9 +361,10 @@ button {
 <!-- ТАК ЖЕ ДО ВОПРОСА 20 -->
 <!-- name ОБЯЗАТЕЛЬНО разные: b1q2, b1q3 … b1q20 -->
 
-<button onclick="checkQuiz('b1q', 20, 'block1-result', 'block2')">
+<button onclick="checkQuiz('b1q', 20, 'block1-result', 'block2', false)">
 Проверить блок
 </button>
+
 
 <div id="block1-result" class="result-box hidden"></div>
 
@@ -552,9 +553,10 @@ button {
 </div>
 
 <!-- b2q2 … b2q20 -->
-<button onclick="checkQuiz('b2q', 20, 'block2-result', 'block3')">
+<button onclick="checkQuiz('b2q', 20, 'block1-result', 'block3', false)">
 Проверить блок
 </button>
+
 
 
 <div id="block2-result" class="result-box hidden"></div>
@@ -759,9 +761,10 @@ button {
 </div>
 
 
-<button onclick="checkQuiz('b3q', 20, 'block3-result', 'block4')">
+<button onclick="checkQuiz('b3q', 20, 'block1-result', 'block4', false)">
 Проверить блок
 </button>
+
 
 
 <div id="block3-result" class="result-box hidden"></div>
@@ -961,7 +964,7 @@ button {
 
 <!-- ВОПРОСЫ 11–20 МОЖНО ДОПОЛНИТЬ ПО АНАЛОГИИ -->
 
-<button onclick="checkQuiz('b4q', 20, 'block4-result', 'block5')">
+<button onclick="checkQuiz('b4q', 20, 'block1-result', 'block5', false)">
 Проверить блок
 </button>
 
@@ -1156,7 +1159,9 @@ button {
 <button onclick="checkQuiz('b5q', 20, 'block5-result')">
 Завершить курс
 </button>
-
+<button onclick="checkQuiz('b5q', 20, 'block1-result'false)">
+Проверить блок
+</button>
 
 <div id="block5-result" class="result-box hidden"></div>
 
@@ -1171,6 +1176,17 @@ button {
 </section>
 
 <script>
+// ФУНКЦИЯ: ПОКАЗЫВАЕТ ТОЛЬКО ОДИН БЛОК (ЭФФЕКТ НОВОЙ СТРАНИЦЫ)
+function showOnlyBlock(blockId) {
+    const sections = document.querySelectorAll("section");
+    sections.forEach(sec => sec.classList.add("hidden"));
+
+    document.getElementById(blockId).classList.remove("hidden");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+
+// ОСНОВНАЯ ФУНКЦИЯ ПРОВЕРКИ ОПРОСОВ
 function checkQuiz(prefix, total, resultId, nextBlockId = null, isIntro = false) {
     let correct = 0;
 
@@ -1222,13 +1238,13 @@ function checkQuiz(prefix, total, resultId, nextBlockId = null, isIntro = false)
         const btn = document.createElement("button");
         btn.innerText = isIntro ? "Начать обучение" : "Перейти к следующему блоку";
         btn.onclick = () => {
-            document.getElementById(nextBlockId).classList.remove("hidden");
-            window.scrollTo(0, 0);
+            showOnlyBlock(nextBlockId);
         };
         resultBox.appendChild(btn);
     }
 }
 </script>
+
 
 </body>
 </html>
